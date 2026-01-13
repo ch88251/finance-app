@@ -9,8 +9,8 @@ ApplicationWindow {
   id: window
   Material.theme: Material.Dark
   Material.accent: Material.Gray
-  width: Screen.width * 0.3
-  height: Screen.height * 0.5
+  width: 1200
+  height: 800
   visible: true
   title: qsTr("Finance Manager")
 

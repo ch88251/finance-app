@@ -8,5 +8,37 @@ ListView {
   height: parent.height
   property var financeModel
 
+  delegate: FinanceDelegate {
+    id: delegate
+    width: ListView.width
+  }
+
   model: financeModel
+
+  section.property: "month"  // Group items by the "month" property
+  section.criteria: ViewSection.FullString
+  section.delegate: Component {
+    id: sectionHeading
+    Rectangle {
+      width: listView.width
+      height:  Qt.platform.os == "android" ?
+        Math.min(window.width, window.height) * 0.05 :
+        Math.min(window.width, window.height) * 0.03
+      color: "#5c8540"
+
+      required property string section
+
+      Text {
+        text: parent.section
+        font.bold: true
+        // depending on the screen density, adjust the font size
+        font.pixelSize: Qt.platform.os == "android" ?
+          Math.min(window.width, window.height) * 0.03 :
+          Math.min(window.width, window.height) * 0.02
+        color: Material.primaryTextColor
+      }
+    }
+  }
+
+  ScrollBar.vertical: ScrollBar { }  
 }
